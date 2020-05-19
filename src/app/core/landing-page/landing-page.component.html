@@ -1,0 +1,325 @@
+<nav class="main-nav">
+  <ul>
+    <li>
+      <a href="#demo1" class="active" data-title="Login Form" data-panel="first"></a>
+    </li>
+    <li>
+      <a href="#demo2" data-title="Registration Form" data-panel="second"></a>
+    </li>
+    <li>
+      <a href="#demo3" data-title="Forgot Password Form" data-panel="third"></a>
+    </li>
+  </ul>
+</nav>
+
+<section id="demo1" class="bg demo1">
+  <div id="animation" class="container">
+    <div>
+      <div class="login-content animated bounceIn">
+
+
+        <form [formGroup]="loginForm" #loginForm1 ngNativeValidate (ngSubmit)="loginWithEmail()">
+          <div class="section-title">
+            <h3>Welcome to B-Donar Match</h3>
+          </div>
+
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i>
+
+              </span>
+            </div>
+            <input type="email" required class="form-control" formControlName="email" placeholder="Email"
+              aria-label="Username" aria-describedby="basic-addon1">
+
+          </div>
+
+
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i>
+
+              </span>
+            </div>
+            <input type="password" formControlName="password" required="required" class="form-control"
+              placeholder="Password" />
+          </div>
+
+          <div class="mb-3">
+            <input type="checkbox" class="mr-1" id="customCheck1">
+            <label for="customCheck1 ">Remember password?</label>
+          </div>
+
+          <div class="row pr-3 pl-3 pt-0" *ngIf="authError && islogin">
+            <div class="col-sm-12 alert alert-danger p-1  " style="font-size: smaller;">
+              {{ authError }}
+            </div>
+          </div>
+
+          <div *ngIf="isEmailSent && islogin " class="p-3 mt-2" style="background-color: white;">
+            <div class="alert alert-success p-1" style="font-size: smaller;">
+              Email sent
+            </div>
+          </div>
+
+          <div *ngIf="!isemailVerification">
+            <button class="btn btn-sm  btn-primary btn-block text-uppercase" [disabled]="loginForm.invalid"
+              type="submit">Sign in</button>
+          </div>
+          <div *ngIf="user && isemailVerification">
+            <button *ngIf="!user.emailVerified" class="btn btn-sm  btn-primary btn-block text-uppercase"
+              (click)="emailVerification()" [disabled]="loginForm.invalid" type="button">Email Verification</button>
+          </div>
+
+        </form>
+        <hr class="my-3">
+        <div class="row pr-3 pl-3 pt-0" *ngIf="authError && isFacebook">
+          <div class="col-sm-12 alert alert-danger p-1  " style="font-size: smaller;">
+            {{ authError }}
+          </div>
+        </div>
+        <div class="row pr-3 pl-3 pt-0" *ngIf="authError && isgoogle">
+          <div class="col-sm-12 alert alert-danger p-1  " style="font-size: smaller;">
+            {{ authError }}
+          </div>
+        </div>
+
+        <button class="btn btn-sm  btn-google btn-block text-uppercase" (click)="loginWithGmail()" type="submit"> <i
+            class="fab fa-google mr-2"></i> Sign in with Google</button>
+        <button class="btn  btn-sm btn-facebook btn-block text-uppercase" (click)="loginWithFacebook()" type="submit">
+          <i class="fab fa-facebook-f  mr-2"></i> Sign in with Facebook</button>
+
+
+
+      </div>
+      <div class="login-form-links  animated bounceInLeft">
+        <h4 class="blue">Don't have an Account?</h4>
+        <span class="grayout">No worry</span>
+        <a href="#demo2" class="blue">Click Here</a>
+        <span class="grayout">to Register</span>
+      </div>
+      <div class="login-form-links link2 animated bounceInRight">
+        <h4 class="green">Forget your Password?</h4>
+        <span class="grayout">Dont worry</span>
+        <a href="#demo3" class="green">Click Here</a>
+        <span class="grayout">to Get New One</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="demo2" class="bg demo2">
+
+  <form class="signUp-content" ngNativeValidate #signUpvalidator [formGroup]="signUpForm">
+    <div data-scroll class="signup">
+      <div class="section-title">
+        <h3>Get your Account Here</h3>
+      </div>
+
+
+
+
+
+      <div class="signUpBlock">
+        <div [ngClass]="{'left':  !isSignUp, 'left1': isSignUp}">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i>
+              </span>
+            </div>
+            <input type="text" required="required" class="form-control" placeholder="First Name"
+              formControlName="firstName" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i>
+
+              </span>
+            </div>
+            <input type="text" required="required" class="form-control" formControlName="lastName"
+              placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-home"></i>
+
+              </span>
+            </div>
+            <input type="text" required="required" class="form-control" formControlName="city" placeholder="City"
+              aria-label="City" aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-home"></i>
+
+              </span>
+            </div>
+            <input type="text" required="required" class="form-control" formControlName="state" placeholder="State"
+              aria-label="State" aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-home"></i>
+
+              </span>
+            </div>
+            <input type="number" required="required" class="form-control " formControlName="zipCode"
+              placeholder="Zip Code" aria-label="ZipCode" aria-describedby="basic-addon1">
+          </div>
+
+
+
+        </div>
+        <div [ngClass]="{'left':  !isSignUp, 'left1': isSignUp}">
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-globe"></i>
+
+              </span>
+            </div>
+            <input type="text" required="required" class="form-control" formControlName="country" placeholder="Country"
+              aria-label="Country" aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i>
+
+              </span>
+            </div>
+            <input type="email" required="required" class="form-control" formControlName="email" placeholder="Email"
+              aria-label="Email" aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fa fa-tint"></i>
+
+              </span>
+            </div>
+            <input type="text" required="required" class="form-control" formControlName="bloodGroup"
+              placeholder="Blood Group" aria-label="BloodGroup" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i>
+
+              </span>
+            </div>
+            <input type="password" required="required" class="form-control" #password (change)='validatePassword()'
+              formControlName="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i>
+
+              </span>
+            </div>
+            <input type="password" required="required" class="form-control" #confirm_password
+              (keyup)='validatePassword()' placeholder="Confirm Password" formControlName="confirmPassword"
+              aria-label="ConfirmPassword" aria-describedby="basic-addon1">
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+      <div *ngIf="authError && isSignUp " class="p-3 mt-2" style="background-color: white;">
+        <div class="alert alert-danger p-1" style="font-size: smaller;">
+          {{ authError }}
+        </div>
+      </div>
+
+      <div *ngIf="isEmailSent  && isSignUp " class="p-3 mt-2" style="background-color: white;">
+        <div class="alert alert-success p-1" style="font-size: smaller;">
+          Email sent
+        </div>
+      </div>
+
+
+
+
+      <div *ngIf="user && isemailVerificationsignup" class="p-3" style="background-color: white; text-align: center;">
+        <button *ngIf="!user.emailVerified" type="submit" (click)="emailVerification()"
+          class="btn btn-success btn-sm mt-2 ">
+          Email Verification &nbsp; <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="signUpbutton" *ngIf="!user || !isemailVerificationsignup">
+        <div>
+
+          <a href="#demo1" class="btn btn-primary btn-sm blue-btn mt-2 ">
+            <i class="fas fa-arrow-left"></i>&nbsp; &nbsp;Back To Login </a>
+        </div>
+        <div>
+          <button type="submit" (click)="register()" [disabled]="signUpForm.invalid"
+            class="btn btn-success btn-sm mt-2 ">
+            Register Now &nbsp; <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+<section id="demo3" class="bg demo3">
+  <div data-scroll class="forgetPassword-content">
+    <form class="form" [formGroup]="resetForm">
+      <div class="section-title">
+        <h3>Forget Password</h3>
+      </div>
+
+
+      <!--
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i>
+
+          </span>
+        </div>
+        <input type="text" required="required" class="form-control" placeholder="Username" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div> -->
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i>
+
+          </span>
+        </div>
+        <input type="email" required="required" class="form-control" formControlName="email" placeholder="Email"
+          aria-label="Email" aria-describedby="basic-addon1">
+
+        <div *ngIf="authError && isforgetPassword " class="p-3 mt-2" style="background-color: white;">
+          <div class="alert alert-danger p-1" style="font-size: smaller;">
+            {{ authError }}
+          </div>
+        </div>
+      </div>
+
+      <div class="btngroup">
+        <div>
+
+          <a href="#demo1" class="btn btn-primary btn-sm blue-btn mt-2 ">
+            <i class="fas fa-arrow-left"></i>&nbsp; &nbsp;Back </a>
+        </div>
+        <div>
+          <button type="submit" (click)="resetPassword()" class="btn btn-success btn-sm mt-2 ">
+            Submit &nbsp; <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>

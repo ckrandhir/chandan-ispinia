@@ -1,0 +1,40 @@
+<!--<nav *ngIf="user">
+  <div class="logo">Chandan Kumar</div>
+  <label for="btn" class="icon">-->
+<!-- <span class="fa fa-bars"></span> -->
+<!--<i class="fas fa-bars"></i>
+  </label>
+  <input type="checkbox" id="btn">
+  <ul>
+    <li><a href="#">Home</a></li>
+
+    <li>
+      <label for="btn-2" class="show">Services</label>
+      <a href="#">Services</a>
+
+    </li>
+
+    <li><a href="#" (click)='logout()'>Log Out</a></li>
+  </ul>
+</nav>-->
+
+
+<div class="wrapper" *ngIf="user">
+  <!-- top navbar-->
+  <app-header class="topnavbar-wrapper"></app-header>
+  <!-- sidebar-->
+  <app-sidebar class="aside-container"></app-sidebar>
+  <!-- offsidebar-->
+  <app-offsidebar class="offsidebar mt-5"></app-offsidebar>
+  <!-- Main section-->
+  <section class="section-container">
+    <!-- Page content-->
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+  <!-- Page footer-->
+  <footer class="footer-container" app-footer></footer>
+</div>
+
+<router-outlet *ngIf="!user"></router-outlet>
