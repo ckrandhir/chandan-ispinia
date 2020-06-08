@@ -15,7 +15,7 @@
 <section id="demo1" class="bg demo1">
   <div id="animation" class="container">
     <div>
-      <div class="login-content animated bounceIn">
+      <div data-scroll class="login-content animated bounceIn">
 
 
         <form [formGroup]="loginForm" #loginForm1 ngNativeValidate (ngSubmit)="loginWithEmail()">
@@ -94,13 +94,13 @@
 
 
       </div>
-      <div class="login-form-links  animated bounceInLeft">
+      <div data-scroll class="login-form-links  animated bounceInLeft">
         <h4 class="blue">Don't have an Account?</h4>
         <span class="grayout">No worry</span>
         <a href="#demo2" class="blue">Click Here</a>
         <span class="grayout">to Register</span>
       </div>
-      <div class="login-form-links link2 animated bounceInRight">
+      <div data-scroll class="login-form-links link2 animated bounceInRight">
         <h4 class="green">Forget your Password?</h4>
         <span class="grayout">Dont worry</span>
         <a href="#demo3" class="green">Click Here</a>

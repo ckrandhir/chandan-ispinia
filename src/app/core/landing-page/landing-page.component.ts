@@ -1,4 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  AfterContentInit,
+} from '@angular/core';
 import ScrollOut from 'scroll-out';
 import {
   FormGroup,
@@ -18,7 +24,7 @@ import * as firebase from 'firebase/app';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements OnInit, AfterContentInit {
   loginForm: FormGroup;
   signUpForm: FormGroup;
   resetForm: FormGroup;
@@ -46,6 +52,20 @@ export class LandingPageComponent implements OnInit {
     private route: ActivatedRoute,
     private userDetailService: UserDetailService
   ) {}
+  ngAfterContentInit(): void {
+    ScrollOut({
+      onShown: function (el) {
+        // remove the class
+        el.classList.remove('animated');
+
+        // force reflow
+        void el.offsetWidth;
+
+        // re-add the animated cl
+        el.classList.add('animated');
+      },
+    });
+  }
   authError: any;
   ngOnInit(): void {
     this.auth.eventAuthError$.subscribe((data) => {
@@ -54,11 +74,6 @@ export class LandingPageComponent implements OnInit {
       } else {
         this.authError = null;
       }
-    });
-
-    ScrollOut({
-      // onShown(el) {},
-      // onHidden: function (element, ctx, scrollingElement) {},
     });
 
     this.loginForm = this.fb.group({
