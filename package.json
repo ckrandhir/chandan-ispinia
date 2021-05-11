@@ -35,7 +35,7 @@
     "jquery.browser": "0.1.0",
     "jquery.flot.spline": "themicon/jquery.flot.spline",
     "jquery.flot.tooltip": "github:krzysu/flot.tooltip",
-    "lodash": "4.17.12",
+    "lodash": "4.17.21",
     "moment": "^2.25.3",
     "ngx-bootstrap": "^5.6.1",
     "rxjs": "~6.5.4",
